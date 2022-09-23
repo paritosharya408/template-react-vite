@@ -1,0 +1,26 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #202020;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-align: center;
+  background-color: #fff;
+}
+
+.main-wrapper {
+  background-color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  padding: 1rem;
+  margin-top: 3.5rem;
+}
