@@ -1,0 +1,15 @@
+.pageContainer {
+  display: flex;
+  width: 100%;
+}
+
+.main {
+  border-radius: 4px;
+  width: 100%;
+}
+
+.pageContent {
+  background-color: #fff;
+  margin: 16px;
+  height: calc(100vh - 88px);
+}

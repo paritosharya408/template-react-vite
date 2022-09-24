@@ -1,25 +1,12 @@
-import {
-  Button,
-  Card,
-  TextField,
-  styled,
-  CardContent,
-  Typography,
-  Link,
-} from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { User } from '../../types/User'
 import api from '../../hooks/api'
 import { useAuth } from '../../context/userContext'
+import styles from './Signin.module.css'
+import { TextField } from '../../components/text-field'
+import { Button } from '../../components/button'
 
-const Container = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`
 export function Signin() {
   const navigateTo = useNavigate()
   const { setUser, user } = useAuth()
@@ -48,51 +35,35 @@ export function Signin() {
       console.error(error)
     }
   }
-  const handleChange = (event: { target: { id: string; value: string } }) => {
-    setUserInputs({ ...userInputs, [event.target.id]: event.target.value })
+  const handleChange = (event: { target: { name: string; value: string } }) => {
+    console.log('aa')
+    setUserInputs({ ...userInputs, [event.target.name]: event.target.value })
   }
   return (
-    <Container>
-      {user && user.email}
-      <Card
-        sx={{
-          width: '450px',
-          padding: '16px',
-        }}
-        variant="outlined"
-      >
-        <Typography variant="h5">Log in</Typography>
-        <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h2 className={styles.header}>Log in</h2>
+        <div className="form">
           <TextField
-            sx={{ marginBottom: '16px' }}
-            required
-            id="email"
-            label="Email"
-            variant="outlined"
             value={userInputs.email}
+            type="text"
+            name="email"
             onChange={handleChange}
+            placeholder="Email"
           />
           <TextField
-            sx={{ marginBottom: '16px' }}
-            required
-            id="password"
-            type="password"
-            label="Password"
-            variant="outlined"
             value={userInputs.password}
+            type="password"
+            name="password"
             onChange={handleChange}
+            placeholder="Password"
           />
-          <Button onClick={loginUser} size="large" variant="contained">
-            Log in
-          </Button>
+          <Button onClick={loginUser}>Log in</Button>
           <p>
-            Dont have an account?
-            <Link sx={{ marginLeft: '4px' }} href="/sign-up">
-              Sign up here.
-            </Link>
+            Dont have an account? <a href="/sign-up">Sign up here</a>
           </p>
-        </CardContent>
-      </Card>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }

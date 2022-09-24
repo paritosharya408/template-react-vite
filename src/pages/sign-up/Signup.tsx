@@ -1,25 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import {
-  Button,
-  Card,
-  TextField,
-  styled,
-  CardContent,
-  Typography,
-  Link,
-} from '@mui/material'
 import { User } from '../../types/User'
 import api from '../../hooks/api'
 import { useAuth } from '../../context/userContext'
+import { TextField } from '../../components/text-field'
+import styles from './Signup.module.css'
+import { Button } from '../../components/button'
 
-const Container = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`
 export function Signup() {
   const navigateTo = useNavigate()
   const { user } = useAuth()
@@ -54,55 +41,37 @@ export function Signup() {
   }
 
   return (
-    <Container>
-      <Card
-        sx={{
-          width: '450px',
-          padding: '16px',
-        }}
-        variant="outlined"
-      >
-        <Typography variant="h5">Sign up</Typography>
-        <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h2 className={styles.header}>Log in</h2>
+        <div className="form">
           <TextField
-            sx={{ marginBottom: '16px' }}
-            required
-            id="email"
-            label="Email"
-            variant="outlined"
             value={userInputs.email}
+            type="text"
+            name="email"
             onChange={handleChange}
+            placeholder="Email"
           />
           <TextField
-            sx={{ marginBottom: '16px' }}
-            required
-            id="name"
-            label="Name"
-            variant="outlined"
             value={userInputs.name}
+            type="text"
+            name="name"
             onChange={handleChange}
+            placeholder="Name"
           />
           <TextField
-            sx={{ marginBottom: '16px' }}
-            required
-            type="password"
-            id="password"
-            label="Password"
-            variant="outlined"
             value={userInputs.password}
+            type="password"
+            name="password"
             onChange={handleChange}
+            placeholder="Password"
           />
-          <Button onClick={registerUser} size="large" variant="contained">
-            Sign up
-          </Button>
+          <Button onClick={registerUser}>Log in</Button>
           <p>
-            Already have an account?
-            <Link sx={{ marginLeft: '4px' }} href="/sign-in">
-              Log in here.
-            </Link>
+            Already have an account? <a href="/sign-in">Log in here</a>
           </p>
-        </CardContent>
-      </Card>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }

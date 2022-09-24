@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Header } from '../components/header'
 import { User } from '../types/User'
 import api from '../hooks/api'
 import { useAuth } from '../context/userContext'
+import { Layout } from '../components/layout'
 
 export function ProtectedRoute({ user }: { user: User | null | undefined }) {
   const { setUser } = useAuth()
@@ -21,5 +21,5 @@ export function ProtectedRoute({ user }: { user: User | null | undefined }) {
     }
   }, [])
 
-  return <Header />
+  return <Layout />
 }
