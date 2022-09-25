@@ -1,6 +1,14 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react'
 import styles from './TextField.module.css'
+
+interface Props {
+  type: string
+  value: string | undefined
+  onChange: (data: { target: { name: string; value: string } }) => void
+  placeholder: string
+  name: string
+  disabled?: boolean
+  error?: string
+}
 
 export function TextField({
   type,
@@ -10,7 +18,7 @@ export function TextField({
   name,
   disabled,
   error,
-}: any) {
+}: Props) {
   return (
     <div>
       <div className={styles.container}>
@@ -22,11 +30,19 @@ export function TextField({
           onChange={onChange}
           value={value}
         />
-        <label className={[styles.label, value && styles.filled].join(' ')}>
+        <label
+          htmlFor="input"
+          className={[styles.label, value && styles.filled].join(' ')}
+        >
           {placeholder}
         </label>
       </div>
-      {error ? <p className={styles.error}>{error}</p> : ''}
+      {error?.length ? <p className={styles.error}>{error}</p> : ''}
     </div>
   )
+}
+
+TextField.defaultProps = {
+  disabled: false,
+  error: '',
 }

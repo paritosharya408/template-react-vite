@@ -1,18 +1,27 @@
 .button {
+  display: inline-flex;
+  background-color: #3897f0;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  border-color: rgb(182, 182, 191);
+  appearance: none;
   box-sizing: border-box;
+  border: 0;
+  transition: all 0.4s ease 0s;
+  font-weight: 700;
+  margin: 10px;
   color: #fff;
-  font-weight: 500;
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  border-radius: 4px;
-  margin-right: 1rem;
-  font-size: 1rem;
+  text-decoration: none;
+  padding: 12px;
+  font-size: 14px;
   cursor: pointer;
-  height: 40px;
-  min-width: 100px;
-  padding: 0 10px;
-  background: #00c3c5;
-  border: #00c3c5;
-}
-.button:focus {
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #f4ebff;
+  &:hover {
+    background-color: #447fe5;
+    transition: all 0.4s ease 0s;
+  }
+  &:focus {
+    box-shadow: 0 0 0 4px #293dce;
+    outline: none;
+  }
 }

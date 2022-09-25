@@ -14,6 +14,7 @@ export function Signin() {
     email: '',
     password: '',
   })
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (!user) {
@@ -28,6 +29,10 @@ export function Signin() {
 
   const loginUser = async () => {
     try {
+      const { email, password } = userInputs
+      if (!email || !password) {
+        return setError('Field is required.')
+      }
       const response = await api.post('/users/sign-in', userInputs)
       setUser(response.data)
       navigateTo('/')
@@ -36,7 +41,6 @@ export function Signin() {
     }
   }
   const handleChange = (event: { target: { name: string; value: string } }) => {
-    console.log('aa')
     setUserInputs({ ...userInputs, [event.target.name]: event.target.value })
   }
   return (
@@ -50,6 +54,7 @@ export function Signin() {
             name="email"
             onChange={handleChange}
             placeholder="Email"
+            error={error}
           />
           <TextField
             value={userInputs.password}
@@ -57,6 +62,7 @@ export function Signin() {
             name="password"
             onChange={handleChange}
             placeholder="Password"
+            error={error}
           />
           <Button onClick={loginUser}>Log in</Button>
           <p>
