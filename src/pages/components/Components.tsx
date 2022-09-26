@@ -37,7 +37,6 @@ export function Components() {
         placeholder="Search.."
         selectedValue={(val: any) => setSelectedValue(val)}
       />
-      {selectedValue?.name}
       <h3>Button</h3>
       <Button>Click me!</Button>
     </div>
