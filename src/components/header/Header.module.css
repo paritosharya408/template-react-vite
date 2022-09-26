@@ -11,4 +11,7 @@
 .logo,
 .text {
   cursor: pointer;
+  & h2 {
+    margin-bottom: 0;
+  }
 }

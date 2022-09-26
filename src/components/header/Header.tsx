@@ -14,7 +14,7 @@ export function Header() {
   }
 
   return (
-    <div className={styles.header}>
+    <div className={`${styles.header} bg-1`}>
       <div className={styles.logo}>
         <Link to="/">
           <h2>Logo</h2>

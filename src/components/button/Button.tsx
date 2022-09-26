@@ -3,7 +3,7 @@ import styles from './Button.module.css'
 
 interface IProps {
   children: string
-  onClick: () => void
+  onClick?: () => Promise<void> | undefined
 }
 
 export function Button({ children, onClick }: IProps) {
@@ -12,4 +12,8 @@ export function Button({ children, onClick }: IProps) {
       {children}
     </button>
   )
+}
+
+Button.defaultProps = {
+  onClick: undefined,
 }

@@ -45,9 +45,9 @@ export function Signin() {
   }
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={`${styles.card} bg-1`}>
         <h2 className={styles.header}>Log in</h2>
-        <div className="form">
+        <form className="form">
           <TextField
             value={userInputs.email}
             type="text"
@@ -68,7 +68,7 @@ export function Signin() {
           <p>
             Dont have an account? <a href="/sign-up">Sign up here</a>
           </p>
-        </div>
+        </form>
       </div>
     </div>
   )

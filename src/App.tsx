@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from './context/userContext'
 import { Settings } from './pages/settings'
 import { Friends } from './pages/friends'
 import { Dashboard } from './pages/dashboard'
+import { Components } from './pages/components'
 
 function App() {
   const { user } = useAuth()
@@ -21,6 +22,7 @@ function App() {
             <Route path="/conversations" element={<Conversations />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/components" element={<Components />} />
           </Route>
         </Routes>
       </BrowserRouter>

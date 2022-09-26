@@ -9,7 +9,7 @@ export function Layout() {
       <Sidebar />
       <main className={styles.main}>
         <Header />
-        <div className={styles.pageContent}>
+        <div className={`${styles.pageContent} bg-1`}>
           <Outlet />
         </div>
       </main>

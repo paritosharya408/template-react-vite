@@ -9,11 +9,13 @@ export function Sidebar() {
     { name: 'Conversations', path: '/conversations', icon: 'chat' },
     { name: 'Friends', path: '/friends', icon: 'group' },
     { name: 'Settings', path: '/settings', icon: 'settings' },
+    { name: 'Components', path: '/components', icon: 'apps' },
   ]
+
   return (
-    <div className={`${styles.sidebar} ${isOpen && styles.sidebarOpen}`}>
-      <div className="items">
-        <ul>
+    <div className={`${styles.sidebar} ${isOpen && styles.sidebarOpen} bg-1`}>
+      <div>
+        <ul className={styles.items}>
           <li className={styles.item}>
             <span onClick={() => setIsOpen(!isOpen)} className="material-icons">
               menu
@@ -21,7 +23,7 @@ export function Sidebar() {
             <h3 className={isOpen ? styles.showText : ''}>App</h3>
           </li>
         </ul>
-        <ul>
+        <ul className={styles.items}>
           {menuItems.map((item) => {
             return (
               <li key={item.path}>

@@ -29,5 +29,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'consistent-return': 0,
     '@typescript-eslint/no-shadow': 0,
+    'jsx-a11y/no-noninteractive-tabindex': 0,
+    'react/jsx-no-bind': 0,
   },
 }

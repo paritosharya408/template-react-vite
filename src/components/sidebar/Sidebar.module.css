@@ -11,7 +11,7 @@
   width: 220px;
 }
 
-ul {
+.items {
   padding: 0;
   list-style-type: none;
   margin-left: 14px;

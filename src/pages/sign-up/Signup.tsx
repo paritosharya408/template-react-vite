@@ -49,7 +49,7 @@ export function Signup() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={`${styles.card} bg-1`}>
         <h2 className={styles.header}>Log in</h2>
         <div className="form">
           <TextField

@@ -7,22 +7,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  text-align: center;
   background-color: #f4f4f4;
-}
-
-.main-wrapper {
-  background-color: #fff;
 }
 
 body {
   margin: 0;
   padding: 0;
-}
-
-.page-wrapper {
-  padding: 1rem;
-  margin-top: 3.5rem;
 }
 
 .material-icons {
@@ -57,7 +47,7 @@ a {
 }
 
 .active {
-  color: #00c3c5;
+  color: #3897f0;
 }
 
 h1,
@@ -66,5 +56,14 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+  margin-top: 0;
+}
+
+.bg-1 {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #fff;
+}
+
+.container {
+  padding: 16px;
 }

@@ -1,25 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styles from './Select.module.css'
+import React, { useEffect, useState, useRef } from 'react'
+import { TextField } from '../text-field'
+import styles from './Autocomplete.module.css'
 
 export type SelectOption = {
   name: string
   value: any
 }
 
-interface SelectProps {
+interface AutocompleteProps {
   options: SelectOption[]
-  value?: SelectOption
-  onChange: (value: SelectOption | undefined) => void
+  placeholder: string
+  selectedValue: (value: SelectOption) => void
 }
 
-export function Select({ options, value, onChange }: SelectProps) {
+export function Autocomplete({
+  options,
+  placeholder,
+  selectedValue,
+}: AutocompleteProps) {
+  const [filteredOptions, setFilteredOptions] = useState<SelectOption[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [query, setQuery] = useState<string>('')
   const containerRef = useRef<HTMLDivElement>(null)
 
   function selectOption(option: SelectOption) {
-    if (option !== value) onChange(option)
+    selectedValue(option)
+    setQuery(option.name)
+  }
+
+  function handleBlur(event: any) {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsOpen(false)
+    }
+  }
+
+  function handleChange(event: { target: { name: string; value: string } }) {
+    const input = event.target.value
+    const filteredOptions = options.filter(
+      (suggestion) =>
+        suggestion.name.toLowerCase().indexOf(input.toLowerCase()) > -1
+    )
+    setSelectedIndex(0)
+    setFilteredOptions(filteredOptions)
+    setIsOpen(true)
+    setQuery(input)
   }
 
   useEffect(() => {
@@ -58,21 +84,32 @@ export function Select({ options, value, onChange }: SelectProps) {
     return () => {
       containerRef.current?.removeEventListener('keydown', handler)
     }
-  }, [isOpen, highlightedIndex, options])
+  }, [isOpen, highlightedIndex, filteredOptions])
 
   return (
     <div
       ref={containerRef}
-      tabIndex={0}
-      onBlur={() => setIsOpen(false)}
+      onBlur={handleBlur}
+      tabIndex={-1}
       onClick={() => setIsOpen((prev) => !prev)}
-      className={styles.select}
+      className={styles.autocomplete}
     >
-      <span className={styles.input}>{value?.name}</span>
-      <ul className={`${styles.options} ${isOpen ? styles.show : ''}`}>
-        {options.map((option: SelectOption, index) => {
+      <TextField
+        placeholder={placeholder}
+        value={query}
+        onChange={handleChange}
+        type="text"
+        name="autocomplete"
+      />
+      <ul
+        className={`${styles.options} ${
+          isOpen && filteredOptions.length ? styles.show : ''
+        }`}
+      >
+        {filteredOptions.map((option: SelectOption, index) => {
           return (
             <li
+              key={option.name}
               onClick={(e) => {
                 e.stopPropagation()
                 selectOption(option)
@@ -80,9 +117,8 @@ export function Select({ options, value, onChange }: SelectProps) {
                 setSelectedIndex(selectedIndex)
               }}
               onMouseEnter={() => setHighlightedIndex(index)}
-              key={option.value}
               className={`${styles.option} ${
-                option.name === value?.name ? styles.selected : ''
+                option.name === query ? styles.selected : ''
               } ${index === highlightedIndex ? styles.highlighted : ''}`}
             >
               {option.name}
@@ -92,8 +128,4 @@ export function Select({ options, value, onChange }: SelectProps) {
       </ul>
     </div>
   )
-}
-
-Select.defaultProps = {
-  value: '',
 }

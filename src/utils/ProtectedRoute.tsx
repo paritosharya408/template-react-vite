@@ -17,7 +17,10 @@ export function ProtectedRoute({ user }: { user: User | null | undefined }) {
           if (!response.data) navigateTo('/sign-in')
           setUser(response.data)
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          navigateTo('/sign-in')
+          console.log(err)
+        })
     }
   }, [])
 

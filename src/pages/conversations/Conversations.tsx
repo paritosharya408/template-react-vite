@@ -1,3 +1,7 @@
 export function Conversations() {
-  return <div>Conversations</div>
+  return (
+    <div className="container">
+      <h2>Conversations</h2>
+    </div>
+  )
 }
