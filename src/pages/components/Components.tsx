@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Autocomplete } from '../../components/autocomplete'
 import { Button } from '../../components/button'
 import { Select } from '../../components/select'
@@ -15,9 +15,6 @@ export function Components() {
   const [selectedValue, setSelectedValue] = useState()
   const [inputVal, setInputVal] = useState('')
 
-  useEffect(() => {
-    console.log(selectedValue)
-  }, [selectedValue])
   return (
     <div className="container">
       <h3>Input</h3>
@@ -40,6 +37,7 @@ export function Components() {
         placeholder="Search.."
         selectedValue={(val: any) => setSelectedValue(val)}
       />
+      {selectedValue?.name}
       <h3>Button</h3>
       <Button>Click me!</Button>
     </div>
